@@ -8,7 +8,9 @@ const HomePage = (): JSX.Element => {
       <div>
         <div className="page">
           <div className="container section">
-            <button className={'primary'}>{t('content')}</button>
+            <button className={'primary'} aria-label="edit">
+              {t('content')}
+            </button>
           </div>
         </div>
       </div>

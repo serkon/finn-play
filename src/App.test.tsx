@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import HomePage from './screens/home.screen';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+test('renders learn react link', async () => {
+  render(<HomePage />);
+  const linkElement = await screen.getByRole('button', { name: /edit/i });
 
   expect(linkElement).toBeInTheDocument();
 });
