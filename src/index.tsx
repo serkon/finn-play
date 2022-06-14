@@ -7,8 +7,10 @@ import { ScrollTo } from 'src/common/component/scroll/scroll.component';
 import { BrowserRouter, Navigate } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import { Language } from 'src/common/component/translate/translate.component';
+import { store } from 'src/common/store/store';
 
 /**
  * Screens
@@ -22,15 +24,17 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollTo />
-      <Language default="fi">
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="" element={<HomePage />} />
-          </Route>
-          <Route path="*" element={<PageNotFound />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Language>
+      <Provider store={store}>
+        <Language default="fi">
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="" element={<HomePage />} />
+            </Route>
+            <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Language>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
 );
