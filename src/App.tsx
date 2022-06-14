@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from './common/component/error-boundary/ErrorBoundary';
