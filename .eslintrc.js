@@ -153,7 +153,7 @@ module.exports = {
         semi: ['error', 'never'],
         quotes: ['error', 'double'],
         'quote-props': ['error', 'consistent'],
-        'max-len': ['error', { code: 80, ignoreStrings: true, ignoreRegExpLiterals: true, ignoreTemplateLiterals: true }],
+        'max-len': ['error', { code: 180, ignoreStrings: true, ignoreRegExpLiterals: true, ignoreTemplateLiterals: true }],
       },
     },
   ],
