@@ -4,7 +4,7 @@ export interface Group {
   games: number[];
 }
 
-export interface Product {
+export interface Provider {
   id: number;
   name: string;
   logo: string;
@@ -17,6 +17,16 @@ export interface Game {
   cover: string;
   coverLarge: string;
   date: string;
+}
+
+export interface User {
+  id: number;
+  username: string;
+  password: string;
+  name?: string;
+  email?: string;
+  avatar?: string;
+  provider?: number;
 }
 
 /**
