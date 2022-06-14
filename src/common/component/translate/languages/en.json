@@ -1,0 +1,6 @@
+{
+  "hello": "en test",
+  "withParam": "Test {param}",
+  "loading": "Loading...",
+  "content": "Content..."
+}

@@ -7,6 +7,7 @@ import { ScrollTo } from 'src/common/component/scroll/scroll.component';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
+import { Language } from 'src/common/component/translate/translate.component';
 
 /**
  * Screens
@@ -19,11 +20,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollTo />
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="" element={<HomePage />} />
-        </Route>
-      </Routes>
+      <Language default="en">
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="" element={<HomePage />} />
+          </Route>
+        </Routes>
+      </Language>
     </BrowserRouter>
   </React.StrictMode>,
 );
