@@ -20,7 +20,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScrollTo />
-      <Language default="en">
+      <Language default="fi">
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="" element={<HomePage />} />
