@@ -1,6 +1,6 @@
 import { useTranslate } from 'src/common/component/translate/translate.component';
 
-const HomePage = (): JSX.Element => {
+export const HomeScreen = (): JSX.Element => {
   const { t } = useTranslate();
 
   return (
@@ -17,5 +17,3 @@ const HomePage = (): JSX.Element => {
     </>
   );
 };
-
-export default HomePage;

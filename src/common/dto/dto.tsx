@@ -20,7 +20,7 @@ export interface Game {
 }
 
 export interface User {
-  id: number;
+  id: string;
   username: string;
   password: string;
   name?: string;
@@ -40,7 +40,7 @@ export interface HttpRequest<T> {
 }
 
 export interface HttpResponse<T> {
-  data?: T;
+  data: T;
   paging?: { current: number; limit: number; total: number };
   message?: string;
 }

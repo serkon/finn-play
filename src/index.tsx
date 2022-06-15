@@ -15,8 +15,10 @@ import { store } from 'src/common/store/store';
 /**
  * Screens
  */
-import HomePage from 'src/screens/home.screen';
+import { HomeScreen } from 'src/screens/home.screen';
 import { PageNotFound } from 'src/common/component/http/not-found.page';
+import { Authenticator } from './common/component/user/authenticator.component';
+import { LoginScreen } from './common/component/user/login.screen';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -28,7 +30,15 @@ root.render(
         <Language default="fi">
           <Routes>
             <Route path="/" element={<App />}>
-              <Route path="" element={<HomePage />} />
+              <Route
+                path=""
+                element={
+                  <Authenticator.Authorize>
+                    <HomeScreen />
+                  </Authenticator.Authorize>
+                }
+              />
+              <Route path="login" element={<LoginScreen />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
             <Route path="*" element={<Navigate to="/" />} />
