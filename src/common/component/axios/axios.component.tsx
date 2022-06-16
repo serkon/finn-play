@@ -25,12 +25,10 @@ export const api = axios.create({
 api.interceptors.request.use(
   (request: AxiosRequestConfig<any>) => {
     const token = window.localStorage.getItem(AuthorizationHeader.AccessToken);
-
     request.headers = { ...request.headers };
     if (token) {
       request.headers['Authorization'] = 'Bearer ' + token;
     }
-
     return request;
   },
   (error) => {
@@ -42,34 +40,33 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const res = error.response;
-
     if (res.status === 401 && !error.config.headers['RefreshToken']) {
       api.defaults.headers.common['RefreshToken'] = true;
       try {
         const refreshToken = window.localStorage.getItem(AuthorizationHeader.RefreshToken);
-
         if (refreshToken) {
           const refreshResponse: AxiosResponse<HttpResponse<RefreshTokenResponse>> = await api.post('/refresh', {
             refreshToken,
           });
-
           window.localStorage.setItem(AuthorizationHeader.AccessToken, refreshResponse.data.data[AuthorizationHeader.AccessToken] as string);
-
           // api.defaults.headers.common['Authorization'] = 'Bearer ' + refreshResponse.data.accessToken;
           error.config.headers['Authorization'] = 'Bearer ' + refreshResponse.data.data[AuthorizationHeader.AccessToken];
           error.config.headers['RefreshToken'] = false;
         } else {
           throw new Error('No refresh token');
         }
-      } catch (error) {
+      } catch (_error: any) {
         // window.location.href = '/login';
-        console.log('error', error);
+        if (_error.response && _error.response.data) {
+          return Promise.reject(_error.response.data);
+        }
+        error.config.headers['RefreshToken'] = false;
+        return Promise.reject(_error);
       }
-
       return api(error.config);
     }
     console.error('Looks like there was a problem. Status Code: ' + res.status);
-
+    api.defaults.headers.common['RefreshToken'] = false;
     return Promise.reject(error);
   },
 );
