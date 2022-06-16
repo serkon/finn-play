@@ -17,8 +17,9 @@ import { store } from 'src/common/store/store';
  */
 import { HomeScreen } from 'src/screens/home.screen';
 import { PageNotFound } from 'src/common/component/http/not-found.page';
-import { Authenticator } from './common/component/user/authenticator.component';
-import { LoginScreen } from './common/component/user/login.screen';
+import { Authenticator } from 'src/common/component/user/authenticator.component';
+import { LoginScreen } from 'src/common/component/user/login.screen';
+import { AboutScreen } from 'src/screens/about.screen';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -33,9 +34,17 @@ root.render(
               <Route
                 path=""
                 element={
-                  <Authenticator.Authorize>
+                  <Authenticator.Navigate>
                     <HomeScreen />
-                  </Authenticator.Authorize>
+                  </Authenticator.Navigate>
+                }
+              />
+              <Route
+                path="about"
+                element={
+                  <Authenticator.Navigate>
+                    <AboutScreen />
+                  </Authenticator.Navigate>
                 }
               />
               <Route path="login" element={<LoginScreen />} />
