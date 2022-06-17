@@ -1,9 +1,17 @@
+@import "themes/light.scss";
+@import "themes/input.component.scss";
+@import "themes/button.component.scss";
+
 html,
 body,
 #root {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
 }
 
 html {
@@ -13,18 +21,8 @@ html {
   body {
     margin: 0;
     width: 100%;
-    font-family:
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Fira Sans",
-      "Droid Sans",
-      "Helvetica Neue",
-      sans-serif;
+    background-color: var(--color-black-75);
+    font-family: var(--font-family);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

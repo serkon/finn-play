@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ScrollTo } from 'src/common/component/scroll/scroll.component';
 import { BrowserRouter, Navigate } from 'react-router-dom';
@@ -9,8 +7,10 @@ import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import App from './App';
 import { Language } from 'src/common/component/translate/translate.component';
 import { store } from 'src/common/store/store';
+import './index.scss';
 
 /**
  * Screens
@@ -18,7 +18,7 @@ import { store } from 'src/common/store/store';
 import { HomeScreen } from 'src/screens/home.screen';
 import { PageNotFound } from 'src/common/component/http/not-found.page';
 import { Authenticator } from 'src/common/component/user/authenticator.component';
-import { LoginScreen } from 'src/common/component/user/login.screen';
+import { LoginScreen } from 'src/common/component/user/login/login.screen';
 import { AboutScreen } from 'src/screens/about.screen';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
