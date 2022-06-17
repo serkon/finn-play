@@ -32,7 +32,7 @@ export const LoginScreen = () => {
       {state?.error && <p className="error">{state?.error}</p>}
       <form onSubmit={handleSubmit} className="login-form">
         <Input label="Login" defaultValue={'john@doe.com'} width="100%" name="username" />
-        <Input label="Password" defaultValue={'1234567'} type="password" name="password" />
+        <Input label="Password" defaultValue={'1234567'} type="password" name="password" icon="eyes" />
         <Button type="submit" className="btn-primary login-button">
           Login
         </Button>
