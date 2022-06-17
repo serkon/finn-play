@@ -25,7 +25,7 @@ export const LoginScreen = () => {
 
       <form onClick={handleSubmit}>
         <label>
-          Username: <input name="username" type="text" defaultValue={'john1@doe.com'} />
+          Username: <input name="username" type="text" defaultValue={'john@doe.com'} />
           Password: <input name="password" type="text" defaultValue={'1234567'} />
         </label>{' '}
         <button type="submit">Login</button>

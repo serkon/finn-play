@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Authenticator } from 'src/common/component/user/authenticator.component';
 
 export enum AuthorizationHeader {
   Bearer = 'Bearer',
@@ -51,16 +52,17 @@ api.interceptors.response.use(
           window.localStorage.setItem(AuthorizationHeader.AccessToken, refreshResponse.data.data[AuthorizationHeader.AccessToken] as string);
           // api.defaults.headers.common['Authorization'] = 'Bearer ' + refreshResponse.data.accessToken;
           error.config.headers['Authorization'] = 'Bearer ' + refreshResponse.data.data[AuthorizationHeader.AccessToken];
-          error.config.headers['RefreshToken'] = false;
+          api.defaults.headers.common['RefreshToken'] = false;
         } else {
-          throw new Error('No refresh token');
+          signOut();
+          api.defaults.headers.common['RefreshToken'] = false;
+          return Promise.reject(new Error('No refresh token'));
         }
       } catch (_error: any) {
-        // window.location.href = '/login';
+        signOut();
         if (_error.response && _error.response.data) {
           return Promise.reject(_error.response.data);
         }
-        error.config.headers['RefreshToken'] = false;
         return Promise.reject(_error);
       }
       return api(error.config);
@@ -70,6 +72,12 @@ api.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+const signOut = () => {
+  window.location.href = '/login';
+  Authenticator.signOut();
+  api.defaults.headers.common['RefreshToken'] = false;
+};
 
 export interface HttpResponse<T> {
   data: T;

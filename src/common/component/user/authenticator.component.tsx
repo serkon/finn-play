@@ -5,7 +5,6 @@ import { HttpResponse, User } from 'src/common/dto/dto';
 import { api, LoginResponse, AuthorizationHeader } from 'src/common/component/axios/axios.component';
 
 export class Authenticator {
-  // static user: User | null = { id: '1337', name: 'John Doe', email: 'qqe', username: 'John.Doe', password: '21313' };
   static user: User | null = null;
   static tokens: LoginResponse | null = null;
 
@@ -41,9 +40,8 @@ export class Authenticator {
     return user.data.data;
   }
 
-  static async signOut(id?: string, callback?: () => void) {
-    console.log('authenticator signOut', id);
-    id && (await api.post('/logout', { data: id }));
+  static async signOut({ id, callback }: { id: string | undefined; callback?: () => void } = { id: undefined, callback: undefined }) {
+    id && (await api.post('/logout', { [AuthorizationHeader.RefreshToken]: window.localStorage.getItem(AuthorizationHeader.RefreshToken) || Authenticator.tokens?.refreshToken }));
     Authenticator.user = null;
     Authenticator.tokens = null;
     window.localStorage.removeItem(AuthorizationHeader.AccessToken);
@@ -55,14 +53,14 @@ export class Authenticator {
   static Navigate = ({ children }: React.PropsWithChildren) => {
     const location = useLocation();
     const navigate = useNavigate();
-    if (Authenticator.user) {
+    if (Authenticator.isAuthenticated() && window.sessionStorage.getItem('isAuthenticated') === 'true') {
       return (
         <>
           <p>
             Welcome {Authenticator.user && Authenticator.user.username}!
             <button
               onClick={() => {
-                Authenticator.signOut('2sdasd-33sad-23123-daddd', () => navigate('/'));
+                Authenticator.signOut({ id: '2sdasd-33sad-23123-daddd', callback: () => navigate('/') });
               }}
             >
               Sign out
