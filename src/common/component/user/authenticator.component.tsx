@@ -23,6 +23,7 @@ export class Authenticator {
       Authenticator.tokens = login.data.data;
       window.localStorage.setItem(AuthorizationHeader.AccessToken, (login.data.data as LoginResponse).accessToken);
       window.localStorage.setItem(AuthorizationHeader.RefreshToken, (login.data.data as LoginResponse).refreshToken);
+      window.sessionStorage.setItem('isAuthenticated', 'true');
       await this.getUser();
       successCallback && successCallback();
     } catch (e) {
@@ -34,7 +35,7 @@ export class Authenticator {
   static async getUser() {
     // Datayı boş gönderirsen header'da gönderdiğin access token ile girdiğin için mevcut kullanıcıyı getirir.
     // const user: AxiosResponse<HttpResponse<User>> = await api.post('/user', { data: 'sFlt01rLo65zIpwwHc7teuuQxgBlzhti' });
-    const user: AxiosResponse<HttpResponse<User>> = await api.post('/user', { data: 'sFlt01rLo65zIpwwHc7teuuQxgBlzhti' });
+    const user: AxiosResponse<HttpResponse<User>> = await api.post('/user', { data: Authenticator.user?.id });
     Authenticator.user = user.data.data;
     window.localStorage.setItem('user', JSON.stringify(Authenticator.user));
     return user.data.data;

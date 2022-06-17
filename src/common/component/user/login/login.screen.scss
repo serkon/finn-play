@@ -1,0 +1,34 @@
+.login-screen.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid blue;
+
+  .logo {
+    margin-bottom: 40px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .direction {
+    display: none;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    width: 412px;
+
+    .login-button {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}
