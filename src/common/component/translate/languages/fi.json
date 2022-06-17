@@ -1,6 +1,7 @@
 {
-  "hello": "tr test",
-  "withParam": "Deneme {param}",
-  "loading": "Yükleniyor...",
-  "content": "FinContent..."
+  "hello": "en test",
+  "withParam": "Test {param}",
+  "loading": "Loading...",
+  "content": "Content...",
+  "login": "Login"
 }

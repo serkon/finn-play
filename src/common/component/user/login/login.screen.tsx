@@ -6,23 +6,36 @@ import { Input } from 'src/common/component/input/input.component';
 import { Authenticator } from 'src/common/component/user/authenticator.component';
 import { Button } from 'src/common/component/button/button.component';
 import './login.screen.scss';
+import { useTranslate } from 'src/common/component/translate/translate.component';
 
 export const LoginScreen = () => {
+  const { t } = useTranslate();
   const navigate = useNavigate();
   const location: Location = useLocation();
   const from = (location.state as any)?.from?.pathname || '/';
   const [state, setState] = React.useState<{ error: string } | null>(null);
+  const [loading, setLoading] = React.useState(false);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
+    waiting(true);
 
     Authenticator.signIn(
       { username, password },
-      () => navigate(from, { replace: true }),
-      () => setState({ error: 'Invalid username or password' }),
+      () => {
+        navigate(from, { replace: true });
+        waiting(false);
+      },
+      () => {
+        setState({ error: 'Invalid username or password' });
+        waiting(false);
+      },
     );
+  };
+  const waiting = (status: boolean) => {
+    setLoading(status);
   };
 
   return (
@@ -33,8 +46,8 @@ export const LoginScreen = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <Input label="Login" defaultValue={'john@doe.com'} width="100%" name="username" />
         <Input label="Password" defaultValue={'1234567'} type="password" name="password" icon="eyes" />
-        <Button type="submit" className="btn-primary login-button">
-          Login
+        <Button type="submit" className="btn-primary login-button" disabled={loading}>
+          {!loading ? t('login') : <img src="/images/common/loading.svg" className="loading-icon" />}
         </Button>
       </form>
     </div>
