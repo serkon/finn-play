@@ -30,7 +30,7 @@ export const LoginScreen = () => {
       <img src="/images/common/logo.svg" alt="logo" className="logo" />
       <p className="direction">You must log in to view the page at {from}</p>
       {state?.error && <p className="error">{state?.error}</p>}
-      <form onClick={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <Input label="Login" defaultValue={'john@doe.com'} width="100%" name="username" />
         <Input label="Password" defaultValue={'1234567'} type="password" name="password" />
         <Button type="submit" className="btn-primary login-button">
