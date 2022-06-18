@@ -29,7 +29,7 @@ export const LoginScreen = () => {
         waiting(false);
       },
       () => {
-        setState({ error: 'Invalid username or password' });
+        setState({ error: t('Invalid_email_or_password') });
         waiting(false);
       },
     );
@@ -44,10 +44,10 @@ export const LoginScreen = () => {
       <p className="direction">You must log in to view the page at {from}</p>
       {state?.error && <p className="error">{state?.error}</p>}
       <form onSubmit={handleSubmit} className="login-form">
-        <Input label="Login" defaultValue={'john@doe.com'} width="100%" name="username" />
-        <Input label="Password" defaultValue={'1234567'} type="password" name="password" icon="eyes" />
+        <Input label={t('Username')} defaultValue={'john@doe.com'} width="100%" name="username" />
+        <Input label={t('Password')} defaultValue={'1234567'} type="password" name="password" icon="eyes" />
         <Button type="submit" className="btn-primary login-button" disabled={loading}>
-          {!loading ? t('login') : <img src="/images/common/loading.svg" className="loading-icon" />}
+          {!loading ? t('Login') : <img src="/images/common/loading.svg" className="loading-icon" />}
         </Button>
       </form>
     </div>
