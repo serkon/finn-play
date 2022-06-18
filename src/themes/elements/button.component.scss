@@ -1,0 +1,57 @@
+button {
+  display: inline-block;
+  padding: var(--button-padding);
+  height: var(--button-height);
+  border: 1px solid transparent;
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@mixin btn($text: var(--color-black-dark), $hover: var(--color-accent-button-hover), $active: var(--color-accent-button-pressed), $text-hover: var(--color-black-dark) ) {
+  color: $text;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+
+  .icon {
+    background-color: $text;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      background-color: $hover;
+      color: $text-hover;
+
+      .icon {
+        background-color: $text-hover;
+      }
+    }
+
+    &:active {
+      background-color: $active;
+
+      .icon {
+        background-color: $text-hover;
+      }
+    }
+  }
+}
+
+.btn-primary {
+  background-color: var(--color-accent-button);
+
+  @include btn;
+}
+
+.btn-error {
+
+  @include btn($text: var(--color-error), $hover: var(--color-menu-hover), $active: var(--color-menu-pressed), $text-hover: var(--color-black-light) );
+}
