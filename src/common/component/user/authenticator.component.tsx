@@ -41,8 +41,8 @@ export class Authenticator {
     return user.data.data;
   }
 
-  static async signOut({ id, callback }: { id: string | undefined; callback?: () => void } = { id: undefined, callback: undefined }) {
-    id && (await api.post('/logout', { [AuthorizationHeader.RefreshToken]: window.localStorage.getItem(AuthorizationHeader.RefreshToken) || Authenticator.tokens?.refreshToken }));
+  static async signOut({ id, callback }: { id?: string | undefined; callback?: () => void } = { id: undefined, callback: undefined }) {
+    await api.post('/logout', { [AuthorizationHeader.RefreshToken]: window.localStorage.getItem(AuthorizationHeader.RefreshToken) || Authenticator.tokens?.refreshToken });
     Authenticator.user = null;
     Authenticator.tokens = null;
     window.localStorage.removeItem(AuthorizationHeader.AccessToken);
@@ -54,8 +54,10 @@ export class Authenticator {
   static Navigate = ({ children }: React.PropsWithChildren) => {
     const location = useLocation();
     const navigate = useNavigate();
+    navigate;
     if (Authenticator.isAuthenticated() && window.sessionStorage.getItem('isAuthenticated') === 'true') {
-      return (
+      return <>{children}</>;
+      /*
         <>
           <p>
             Welcome {Authenticator.user && Authenticator.user.username}!
@@ -69,7 +71,7 @@ export class Authenticator {
           </p>
           {children}
         </>
-      );
+        */
     }
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
