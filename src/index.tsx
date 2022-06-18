@@ -15,7 +15,7 @@ import './index.scss';
 /**
  * Screens
  */
-import { HomeScreen } from 'src/screens/home.screen';
+import { HomeScreen } from 'src/screens/home/home.screen';
 import { PageNotFound } from 'src/common/component/http/not-found.page';
 import { Authenticator } from 'src/common/component/user/authenticator.component';
 import { LoginScreen } from 'src/common/component/user/login/login.screen';

@@ -1,0 +1,24 @@
+.header {
+  .signout-button {
+    padding-right: 0;
+    margin: 0;
+    color: var(--color-error);
+
+
+    &:hover, &:active{
+      background-color: transparent !important;
+      text-decoration: underline;
+      color: var(--color-error);
+
+      .icon {
+        background-color: var(--color-error);
+      }
+    }
+  }
+
+}
+
+.main {
+  margin-top: 75px;
+  border: 1px solid red;
+}

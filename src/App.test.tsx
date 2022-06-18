@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { HomeScreen } from 'src/screens/home.screen';
+import { HomeScreen } from 'src/screens/home/home.screen';
 
 test('renders learn react link', async () => {
   render(
