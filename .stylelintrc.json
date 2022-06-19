@@ -3,12 +3,6 @@
   "plugins": ["stylelint-no-unsupported-browser-features", "stylelint-order"],
   "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.html"],
   "rules": {
-    "max-line-length": [
-      "error",
-      {
-        "limit": 180
-      }
-    ],
     "custom-property-no-missing-var-function": [true, { "ignoreProperties": ["transition", "transition-property"] }],
     "color-hex-length": "long",
     "declaration-block-no-redundant-longhand-properties": [
