@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import React from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { HttpResponse, User } from 'src/common/dto/dto';
 import { api, LoginResponse, AuthorizationHeader } from 'src/common/component/axios/axios.component';
 
@@ -53,8 +53,7 @@ export class Authenticator {
 
   static Navigate = ({ children }: React.PropsWithChildren) => {
     const location = useLocation();
-    const navigate = useNavigate();
-    navigate;
+
     if (Authenticator.isAuthenticated() && window.sessionStorage.getItem('isAuthenticated') === 'true') {
       return <>{children}</>;
       /*
