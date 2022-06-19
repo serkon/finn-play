@@ -6,9 +6,9 @@ import { useTranslate } from 'src/common/component/translate/translate.component
 import { RootState } from 'src/common/store/store';
 import { set_providers, set_selected_providers } from 'src/common/store/reducers/ProviderReducer';
 import { Provider } from 'src/common/dto/dto';
-import './providers.component.scss';
 import { filter_game_by_provider } from 'src/common/store/reducers/GameReducer';
 import { Filter } from 'src/common/component/filter/Filter';
+import './providers.component.scss';
 
 export const Providers = () => {
   const { t } = useTranslate();
@@ -36,7 +36,7 @@ export const Providers = () => {
     <>
       <section className="provider-list">
         <h2 className="provider-title">{t('Providers')}</h2>
-        <Filter path="name" placeholder={'Search tag'} data={store.providers.list} onClick={(providers: Provider[]) => filterByTags(providers)} />
+        <Filter path="name" placeholder={'Search Providers'} data={store.providers.list} onClick={(providers: Provider[]) => filterByTags(providers)} reset={store.games.reset} />
       </section>
     </>
   );

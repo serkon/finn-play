@@ -36,7 +36,7 @@ export const Groups = () => {
     <>
       <section className="groups-list">
         <h2 className="group-title">{t('Groups')}</h2>
-        <Filter path="name" placeholder={'Search Groups'} data={store.groups.list} onClick={(groups: Group[]) => filterByTags(groups)} />
+        <Filter path="name" placeholder={'Search Groups'} data={store.groups.list} onClick={(groups: Group[]) => filterByTags(groups)} reset={store.games.reset} />
       </section>
     </>
   );

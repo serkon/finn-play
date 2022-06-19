@@ -8,7 +8,7 @@ import { Header } from 'src/common/component/header/header.component';
 import { Input } from 'src/common/component/input/input.component';
 import { useTranslate } from 'src/common/component/translate/translate.component';
 import { Authenticator } from 'src/common/component/user/authenticator.component';
-import { filter_game_by_search_string } from 'src/common/store/reducers/GameReducer';
+import { filter_game_by_search_string, reset_game } from 'src/common/store/reducers/GameReducer';
 import { Providers } from 'src/common/molecules/providers/providers.component';
 import './home.screen.scss';
 import { Groups } from 'src/common/molecules/groups/groups.component';
@@ -34,6 +34,10 @@ export const HomeScreen = (): JSX.Element => {
         dispatch(filter_game_by_search_string(inputRef.current?.value ? inputRef.current?.value : ''));
       }
     }, 400);
+  };
+  const reset = () => {
+    dispatch(reset_game());
+    (inputRef.current as HTMLInputElement).value = '';
   };
 
   return (
@@ -62,10 +66,12 @@ export const HomeScreen = (): JSX.Element => {
             <Groups />
             <Sorter data={store.games.filtered} />
             <Columns />
+            <Button className="btn-secondary" onClick={reset} style={{ marginTop: '32px' }}>
+              Reset
+            </Button>
           </section>
         </div>
       </div>
-      <Button onClick={() => navigate('/about')}>Go to games 2</Button>
     </>
   );
 };

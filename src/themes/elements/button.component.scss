@@ -15,9 +15,9 @@ button {
   }
 }
 
-@mixin btn($text: var(--color-black-dark), $hover: var(--color-accent-button-hover), $active: var(--color-accent-button-pressed), $text-hover: var(--color-black-dark) ) {
-  color: $text;
+@mixin btn($text: var(--color-black-dark), $hover: var(--color-accent-button-hover), $active: var(--color-accent-button-pressed), $text-hover: var(--color-black-dark)) {
   position: relative;
+  color: $text;
   transition: all 0.2s ease-in-out;
 
   .icon {
@@ -52,6 +52,20 @@ button {
 }
 
 .btn-error {
+  @include btn($text: var(--color-error), $hover: var(--color-menu-hover), $active: var(--color-menu-pressed), $text-hover: var(--color-black-light));
+}
 
-  @include btn($text: var(--color-error), $hover: var(--color-menu-hover), $active: var(--color-menu-pressed), $text-hover: var(--color-black-light) );
+.btn-secondary {
+  box-shadow: 0 -2px 18px rgb(128 128 128 / 10%);
+  background-color: var(--color-black-light);
+
+  @include btn($text: var(--color-black-semi), $hover: var(--color-black-light), $active: var(--color-black-75), $text-hover: var(--color-black-semi));
+
+  &:hover {
+    box-shadow: 0 0 4px rgb(128 128 128 / 6%);
+  }
+
+  &:active {
+    box-shadow: 0 0 4px rgb(128 128 128 / 6%);
+  }
 }

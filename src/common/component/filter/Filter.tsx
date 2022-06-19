@@ -7,6 +7,7 @@ interface FilterProps {
   path?: string;
   data: any[] | null;
   debounce?: number;
+  reset?: number;
   onClick?: (items: any[]) => void;
 }
 
@@ -18,6 +19,7 @@ export const Filter = (props: FilterProps): JSX.Element => {
   const [selected, setSelected] = useState<any[]>([]);
   const [init, setInit] = useState<boolean>(false);
   const idGenerator = () => '_' + Math.random().toString(36).substr(2, 9);
+  const id = idGenerator();
   const filter = () => {
     const value = inputRef.current?.value;
     window.clearTimeout(timeout);
@@ -36,6 +38,9 @@ export const Filter = (props: FilterProps): JSX.Element => {
     setInit(true);
   };
   const isSelected = (item: any): boolean => !!selected.find((s) => item === s);
+  const resetToInitState = () => {
+    setSelected([]);
+  };
 
   useEffect(() => {
     if (init) {
@@ -47,7 +52,12 @@ export const Filter = (props: FilterProps): JSX.Element => {
     setFiltered(data);
   }, [data]);
 
-  const id = idGenerator();
+  useEffect(() => {
+    if (props.reset) {
+      resetToInitState();
+    }
+  }, [props.reset]);
+
   return (
     <section className="filter-component">
       <input ref={inputRef} onChange={filter} className="filter" placeholder={placeholder} hidden />

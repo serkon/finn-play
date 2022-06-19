@@ -30,7 +30,14 @@ export const Games = (): JSX.Element => {
 
   return (
     <section className="game-list" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
-      {games && games.map((game, key) => <div className="game" key={key} style={{ backgroundImage: `url(${game.cover})` }} />)}
+      {games &&
+        games.map((game, key) => (
+          <div
+            className="game"
+            key={key}
+            style={{ backgroundImage: `url(${game.cover})`, height: `${store.games.columns === 2 ? '291px' : store.games.columns === 3 ? '191px' : '141px'}` }}
+          />
+        ))}
     </section>
   );
 };

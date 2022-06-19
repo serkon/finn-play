@@ -10,6 +10,7 @@ export interface GameState {
     search: string;
   };
   columns: number;
+  reset: number;
 }
 
 export enum GAME_ACTION {
@@ -19,6 +20,7 @@ export enum GAME_ACTION {
   SET_FILTER_SEARCH = 'SET_FILTER_SEARCH',
   UPDATE_FILTERED_DATA = 'UPDATE_FILTERED_DATA',
   SET_COLUMNS = 'SET_COLUMNS',
+  RESET = 'RESET',
 }
 
 const init: GameState = {
@@ -30,6 +32,7 @@ const init: GameState = {
     search: '',
   },
   columns: 4,
+  reset: 0,
 };
 const filterAll = (state: GameState): Game[] => {
   let filtered = state.game;
@@ -81,6 +84,9 @@ export const GameReducer: Reducer = (state: GameState = init, action: AnyAction)
     case GAME_ACTION.UPDATE_FILTERED_DATA: {
       return { ...state, filtered: action.payload };
     }
+    case GAME_ACTION.RESET: {
+      return { ...state, filtered: state.game, filter: init.filter, columns: init.columns, reset: state.reset + 1 };
+    }
     default:
       return state;
   }
@@ -114,4 +120,8 @@ export const set_game_columns = (payload: number): { type: string; payload: numb
 export const update_filtered_data = (payload: Game[]): { type: string; payload: Game[] } => ({
   type: GAME_ACTION.UPDATE_FILTERED_DATA,
   payload,
+});
+
+export const reset_game = () => ({
+  type: GAME_ACTION.RESET,
 });

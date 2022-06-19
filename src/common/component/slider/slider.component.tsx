@@ -4,10 +4,11 @@ import './slider.component.scss';
 export interface SliderProps {
   start?: number;
   count: number;
+  reset?: number;
   onClick?: (count: number) => void;
 }
 
-export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count, onClick, ...rest }, forwardedRef) => {
+export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count, onClick, reset, ...rest }, forwardedRef) => {
   const [steps, setSteps] = React.useState<number[]>([]);
   const [value, setValue] = React.useState<number>(count - 1);
   const [width, setWidth] = React.useState<number>(0);
@@ -26,12 +27,22 @@ export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count,
     const width = value > 0 ? (value * 100) / piece : 0;
     setWidth(width);
   };
+  const resetToInitState = () => {
+    setValue(count - 1);
+  };
 
   useEffect(() => {
     const steps = Array.from({ length: count }, (x, i) => start + i);
     setSteps(steps);
     calculateWidth(count - 1);
   }, [count, start]);
+
+  useEffect(() => {
+    if (reset) {
+      resetToInitState();
+      calculateWidth(count - 1);
+    }
+  }, [reset]);
 
   return (
     <section className="steps-component" {...rest}>
