@@ -9,6 +9,7 @@ export interface GameState {
     providers: Provider[];
     search: string;
   };
+  columns: number;
 }
 
 export enum GAME_ACTION {
@@ -16,6 +17,7 @@ export enum GAME_ACTION {
   SET_FILTER_GROUPS = 'SET_FILTER_GROUPS',
   SET_FILTER_PROVIDERS = 'SET_FILTER_PROVIDERS',
   SET_FILTER_SEARCH = 'SET_FILTER_SEARCH',
+  SET_COLUMNS = 'SET_COLUMNS',
 }
 
 const init: GameState = {
@@ -26,6 +28,7 @@ const init: GameState = {
     providers: [],
     search: '',
   },
+  columns: 4,
 };
 const filterAll = (state: GameState): Game[] => {
   let filtered = state.game;
@@ -51,7 +54,7 @@ const filterAll = (state: GameState): Game[] => {
 export const GameReducer: Reducer = (state: GameState = init, action: AnyAction) => {
   switch (action.type) {
     case GAME_ACTION.SET_GAMES: {
-      return { ...state, game: action.payload };
+      return { ...state, game: action.payload, filtered: action.payload };
     }
     case GAME_ACTION.SET_FILTER_GROUPS: {
       state.filter.groups = action.payload;
@@ -70,6 +73,9 @@ export const GameReducer: Reducer = (state: GameState = init, action: AnyAction)
       const filtered = filterAll(state);
 
       return { ...state, filtered };
+    }
+    case GAME_ACTION.SET_COLUMNS: {
+      return { ...state, columns: action.payload };
     }
     default:
       return state;
@@ -93,5 +99,10 @@ export const filter_game_by_provider = (payload: Provider[]): { type: string; pa
 
 export const filter_game_by_search_string = (payload: string): { type: string; payload: string } => ({
   type: GAME_ACTION.SET_FILTER_SEARCH,
+  payload,
+});
+
+export const set_game_columns = (payload: number): { type: string; payload: number } => ({
+  type: GAME_ACTION.SET_COLUMNS,
   payload,
 });
