@@ -1,7 +1,7 @@
 /* Srknc: Grid Sistemi v.1.1  **/
 
 $grid-columns: 12;
-$gutter: 30px;
+$gutter: 40px;
 $breakpoints: (
   xs: 0,
   sm: 576px,
@@ -78,7 +78,7 @@ $container-max-widths: (
         // display: initial !important;
         // border: 1px solid red;
         display: flex;
-        // flex-direction: column;
+        flex-direction: column;
         box-sizing: border-box;
       }
 
@@ -88,7 +88,6 @@ $container-max-widths: (
         margin: 0 auto;
         box-sizing: border-box;
         padding: 0 #{$gutter/2};
-        border: 1px solid red;
       }
 
       .row {
