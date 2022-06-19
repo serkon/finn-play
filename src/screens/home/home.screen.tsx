@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'src/common/component/button/button.component';
-import { Games } from 'src/common/component/games/games.component';
+import { Games } from 'src/common/molecules/games/games.component';
 import { Header } from 'src/common/component/header/header.component';
 import { Input } from 'src/common/component/input/input.component';
 import { useTranslate } from 'src/common/component/translate/translate.component';
 import { Authenticator } from 'src/common/component/user/authenticator.component';
-import { filter_game_by_search_string, set_game_columns } from 'src/common/store/reducers/GameReducer';
-
+import { filter_game_by_search_string } from 'src/common/store/reducers/GameReducer';
+import { Providers } from 'src/common/molecules/providers/providers.component';
 import './home.screen.scss';
+import { Groups } from 'src/common/molecules/groups/groups.component';
+import { Sorter } from 'src/common/molecules/sorter/sorter.componet';
+import { RootState } from 'src/common/store/store';
 
 export const HomeScreen = (): JSX.Element => {
   let timeout: number;
@@ -21,6 +24,7 @@ export const HomeScreen = (): JSX.Element => {
   };
   const inputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
+  const store = useSelector<RootState>((state: RootState): RootState => state) as RootState;
   const change = () => {
     const value = inputRef.current?.value;
     window.clearTimeout(timeout);
@@ -30,10 +34,6 @@ export const HomeScreen = (): JSX.Element => {
       }
     }, 400);
   };
-
-  useEffect(() => {
-    dispatch(set_game_columns(4));
-  }, []);
 
   return (
     <>
@@ -50,13 +50,16 @@ export const HomeScreen = (): JSX.Element => {
           </div>
         </div>
       </Header>
-      <div className="container main">
+      <div className="container main-section">
         <div className="row">
           <section className="col-xs-12 col-md-8 content">
             <Games />
           </section>
-          <section className="col-xs-12 col-md-4 filter">
+          <section className="col-xs-12 col-md-4 filter-section">
             <Input label={t('Search')} iconRight="search" onInput={() => change()} ref={inputRef} />
+            <Providers />
+            <Groups />
+            <Sorter data={store.games.filtered} />
           </section>
         </div>
       </div>

@@ -17,6 +17,7 @@ export enum GAME_ACTION {
   SET_FILTER_GROUPS = 'SET_FILTER_GROUPS',
   SET_FILTER_PROVIDERS = 'SET_FILTER_PROVIDERS',
   SET_FILTER_SEARCH = 'SET_FILTER_SEARCH',
+  UPDATE_FILTERED_DATA = 'UPDATE_FILTERED_DATA',
   SET_COLUMNS = 'SET_COLUMNS',
 }
 
@@ -77,6 +78,9 @@ export const GameReducer: Reducer = (state: GameState = init, action: AnyAction)
     case GAME_ACTION.SET_COLUMNS: {
       return { ...state, columns: action.payload };
     }
+    case GAME_ACTION.UPDATE_FILTERED_DATA: {
+      return { ...state, filtered: action.payload };
+    }
     default:
       return state;
   }
@@ -104,5 +108,10 @@ export const filter_game_by_search_string = (payload: string): { type: string; p
 
 export const set_game_columns = (payload: number): { type: string; payload: number } => ({
   type: GAME_ACTION.SET_COLUMNS,
+  payload,
+});
+
+export const update_filtered_data = (payload: Game[]): { type: string; payload: Game[] } => ({
+  type: GAME_ACTION.UPDATE_FILTERED_DATA,
   payload,
 });

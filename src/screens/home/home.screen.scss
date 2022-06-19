@@ -6,8 +6,8 @@
     margin: 0;
     color: var(--color-error);
 
-
-    &:hover, &:active{
+    &:hover,
+    &:active {
       background-color: transparent !important;
       text-decoration: underline;
       color: var(--color-error);
@@ -19,17 +19,27 @@
   }
 }
 
-.main {
+.main-section {
   margin-top: 75px;
 
   .content {
     border: 1px solid transparent;
   }
 
-  .filter {
+  .filter-section {
     border: 1px solid var(--color-black-50);
     padding: 32px;
     border-radius: 8px;
     background-color: var(--color-black-light);
+    row-gap: 32px;
+
+    .provider-title,
+    .group-title,
+    .sort-title {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 120%;
+      color: var(--color-black-semi);
+    }
   }
 }

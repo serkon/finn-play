@@ -74,7 +74,7 @@
     }
   },
   "[scss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": true
     }
