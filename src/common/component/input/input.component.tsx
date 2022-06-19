@@ -16,7 +16,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ label, ic
     <label className={`input-component${iconLeft ? ' icon-left with-icon' : iconRight ? ' icon-right with-icon' : ''}`}>
       <input type="text" {...rest} required ref={forwardedRef} />
       <span>{label}</span>
-      {(iconLeft || iconRight) && <i className={`icon icon-${iconLeft || iconRight}`} onClick={set} />}
+      {(iconLeft || iconRight) && <i className={`icon icon-${iconLeft || iconRight}`} onClick={() => (forwardedRef as any).type === 'password' && set} />}
     </label>
   );
 });
