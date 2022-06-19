@@ -49,7 +49,7 @@ export const Filter = (props: FilterProps): JSX.Element => {
 
   const id = idGenerator();
   return (
-    <>
+    <section className="filter-component">
       <input ref={inputRef} onChange={filter} className="filter" placeholder={placeholder} hidden />
       <ul className="filter-list">
         {filtered &&
@@ -60,6 +60,6 @@ export const Filter = (props: FilterProps): JSX.Element => {
             </li>
           ))}
       </ul>
-    </>
+    </section>
   );
 };

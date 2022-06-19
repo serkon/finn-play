@@ -14,6 +14,7 @@ import './home.screen.scss';
 import { Groups } from 'src/common/molecules/groups/groups.component';
 import { Sorter } from 'src/common/molecules/sorter/sorter.componet';
 import { RootState } from 'src/common/store/store';
+import { Columns } from 'src/common/molecules/columns/columns.component';
 
 export const HomeScreen = (): JSX.Element => {
   let timeout: number;
@@ -60,10 +61,11 @@ export const HomeScreen = (): JSX.Element => {
             <Providers />
             <Groups />
             <Sorter data={store.games.filtered} />
+            <Columns />
           </section>
         </div>
       </div>
-      <Button onClick={() => navigate('/about')}>Go to games</Button>
+      <Button onClick={() => navigate('/about')}>Go to games 2</Button>
     </>
   );
 };

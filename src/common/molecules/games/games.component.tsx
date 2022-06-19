@@ -10,6 +10,7 @@ export const Games = (): JSX.Element => {
   const dispatch = useDispatch();
   const store = useSelector<RootState>((state: RootState): RootState => state) as RootState;
   const [games, setGames] = useState<any[]>([]);
+  const [columns, setColumns] = useState<number>(store.games.columns);
 
   useEffect(() => {
     const games = async () => {
@@ -21,10 +22,14 @@ export const Games = (): JSX.Element => {
 
   useEffect(() => {
     setGames(store.games.filtered);
-  }, [store.games]);
+  }, [store.games.filtered]);
+
+  useEffect(() => {
+    setColumns(store.games.columns);
+  }, [store.games.columns]);
 
   return (
-    <section className="game-list" style={{ gridTemplateColumns: `repeat(${store.games.columns}, 1fr)` }}>
+    <section className="game-list" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
       {games && games.map((game, key) => <div className="game" key={key} style={{ backgroundImage: `url(${game.cover})` }} />)}
     </section>
   );

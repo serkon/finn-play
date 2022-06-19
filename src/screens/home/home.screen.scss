@@ -1,16 +1,16 @@
 .header {
-  box-shadow: 0px -2px 18px rgba(128, 128, 128, 0.1);
+  box-shadow: 0 -2px 18px rgb(128 128 128 / 10%);
 
   .signout-button {
-    padding-right: 0;
     margin: 0;
+    padding-right: 0;
     color: var(--color-error);
 
     &:hover,
     &:active {
       background-color: transparent !important;
-      text-decoration: underline;
       color: var(--color-error);
+      text-decoration: underline;
 
       .icon {
         background-color: var(--color-error);
@@ -27,19 +27,20 @@
   }
 
   .filter-section {
-    border: 1px solid var(--color-black-50);
     padding: 32px;
+    border: 1px solid var(--color-black-50);
     border-radius: 8px;
     background-color: var(--color-black-light);
     row-gap: 32px;
 
     .provider-title,
     .group-title,
-    .sort-title {
+    .sort-title,
+    .column-title {
+      color: var(--color-black-semi);
       font-size: 16px;
       font-weight: 400;
       line-height: 120%;
-      color: var(--color-black-semi);
     }
   }
 }
