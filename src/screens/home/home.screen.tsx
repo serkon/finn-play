@@ -70,12 +70,12 @@ export const HomeScreen = (): JSX.Element => {
               <Columns />
               <div className="reset-area">
                 <span>Games amount: 3800</span>
-                <Button className="btn-secondary" onClick={reset}>
+                <Button className="btn-secondary reset" onClick={reset}>
                   {t('Reset')}
                 </Button>
               </div>
             </div>
-            <div className="show-filters">
+            <div className="show-filters" title="test-case-goes-here">
               <Button className="btn-primary ghost" iconLeft="menu" onClick={() => setMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? t('Hide filters') : t('Show filters')}
               </Button>

@@ -27,10 +27,6 @@ export const Providers = () => {
     memoizedCallback();
   }, [memoizedCallback]);
 
-  useEffect(() => {
-    console.log('provider molecule', store.providers);
-  }, [store.providers]);
-
   return (
     <>
       <section className="provider-list">

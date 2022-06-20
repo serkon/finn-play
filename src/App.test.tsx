@@ -16,7 +16,5 @@ test('renders learn react link', async () => {
       </BrowserRouter>
     </Provider>,
   );
-  const linkElement = await screen.getByRole('button', { name: /edit/i });
-
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByTitle('test-case-goes-here')).toHaveClass('show-filters');
 });

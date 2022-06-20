@@ -22,11 +22,11 @@ export const Games = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    setGames(store.games.filtered);
+    setGames(store.games?.filtered);
   }, [store.games?.filtered]);
 
   useEffect(() => {
-    setColumns(store.games.columns);
+    setColumns(store.games?.columns);
   }, [store.games?.columns]);
 
   return (
@@ -36,7 +36,7 @@ export const Games = (): JSX.Element => {
           <div
             className="game"
             key={key}
-            style={{ backgroundImage: `url(${game.cover})`, height: `${store.games.columns === 2 ? '291px' : store.games.columns === 3 ? '191px' : '141px'}` }}
+            style={{ backgroundImage: `url(${game.cover})`, height: `${store.games?.columns === 2 ? '291px' : store.games?.columns === 3 ? '191px' : '141px'}` }}
           />
         ))}
     </section>

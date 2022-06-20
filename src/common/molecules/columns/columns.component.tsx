@@ -17,7 +17,7 @@ export const Columns = (): JSX.Element => {
   return (
     <section className="columns-list">
       <h2 className="column-title">{t('Columns')}</h2>
-      <Slider count={3} onClick={setColumn} reset={store.games.reset} />
+      <Slider count={3} onClick={setColumn} reset={store.games?.reset} />
     </section>
   );
 };
