@@ -1,13 +1,15 @@
-import './App.scss';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import '@fontsource/prompt';
+
 import { ErrorBoundary } from './common/component/error-boundary/ErrorBoundary';
 import { useTranslate } from './common/component/translate/translate.component';
-
-import '@fontsource/prompt';
+import { useMobile } from './common/hooks/mobile.hook';
+import './App.scss';
 
 function App() {
   const { t } = useTranslate();
+  useMobile();
 
   return (
     <ErrorBoundary>
