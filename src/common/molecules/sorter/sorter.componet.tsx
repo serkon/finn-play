@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Sorting, SortingItem } from 'src/common/component/sorting/sorting.component';
 import { useTranslate } from 'src/common/component/translate/translate.component';
 import { Game } from 'src/common/dto/dto';
 import { update_filtered_data } from 'src/common/store/reducers/GameReducer';
-import { RootState } from 'src/common/store/store';
 import './sorter.component.scss';
 
 interface SorterProps {
@@ -15,7 +14,6 @@ interface SorterProps {
 export const Sorter = (props: SorterProps) => {
   const { t } = useTranslate();
   const dispatch = useDispatch();
-  const store = useSelector<RootState>((state: RootState): RootState => state) as RootState;
   const onSorting = (sorting: Game[]) => {
     console.log('ss:', sorting);
     dispatch(update_filtered_data(sorting));

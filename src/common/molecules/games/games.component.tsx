@@ -18,6 +18,7 @@ export const Games = (): JSX.Element => {
       dispatch(set_games(response.data.data));
     };
     games();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

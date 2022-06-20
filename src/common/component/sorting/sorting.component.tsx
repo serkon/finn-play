@@ -24,7 +24,7 @@ export const Sorting = React.forwardRef<ImperativeHandle, SortingProps>((props, 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const items: SortingItem[] = props.cases;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [sortItem, setSortItem] = useState(items[0]);
+  const [, setSortItem] = useState(items[0]);
   const idGenerator = () => '_' + Math.random().toString(36).substr(2, 9);
   const id = idGenerator();
   const onClick = (item: SortingItem) => {

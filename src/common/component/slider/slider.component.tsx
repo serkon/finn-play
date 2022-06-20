@@ -13,7 +13,7 @@ export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count,
   const [value, setValue] = React.useState<number>(count - 1);
   const [width, setWidth] = React.useState<number>(0);
   const handleClick = (value: number) => {
-    setValue((_old) => {
+    setValue(() => {
       if (forwardedRef && typeof forwardedRef !== 'undefined') {
         (forwardedRef as any).current = value + start;
       }
@@ -35,6 +35,7 @@ export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count,
     const steps = Array.from({ length: count }, (x, i) => start + i);
     setSteps(steps);
     calculateWidth(count - 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, start]);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export const Slider = React.forwardRef<number, SliderProps>(({ start = 2, count,
       resetToInitState();
       calculateWidth(count - 1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reset]);
 
   return (

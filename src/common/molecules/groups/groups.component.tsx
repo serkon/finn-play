@@ -26,6 +26,7 @@ export const Groups = () => {
       dispatch(set_groups(response.data.data));
     };
     groups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

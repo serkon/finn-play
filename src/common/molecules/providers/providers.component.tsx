@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { api } from 'src/common/component/axios/axios.component';
@@ -18,15 +18,14 @@ export const Providers = () => {
     dispatch(filter_game_by_provider(providers));
     dispatch(set_selected_providers(providers));
   };
-  filterByTags;
+  const memoizedCallback = useCallback(async () => {
+    const response = await api.get('/providers');
+    dispatch(set_providers(response.data.data));
+  }, [dispatch]);
 
   useEffect(() => {
-    const providers = async () => {
-      const response = await api.get('/providers');
-      dispatch(set_providers(response.data.data));
-    };
-    providers();
-  }, []);
+    memoizedCallback();
+  }, [memoizedCallback]);
 
   useEffect(() => {
     console.log('provider molecule', store.providers);

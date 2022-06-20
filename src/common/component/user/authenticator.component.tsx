@@ -41,14 +41,17 @@ export class Authenticator {
     return user.data.data;
   }
 
-  static async signOut({ id, callback }: { id?: string | undefined; callback?: () => void } = { id: undefined, callback: undefined }) {
-    await api.post('/logout', { [AuthorizationHeader.RefreshToken]: window.localStorage.getItem(AuthorizationHeader.RefreshToken) || Authenticator.tokens?.refreshToken });
-    Authenticator.user = null;
-    Authenticator.tokens = null;
-    window.localStorage.removeItem(AuthorizationHeader.AccessToken);
-    window.localStorage.removeItem(AuthorizationHeader.RefreshToken);
-    window.localStorage.removeItem('user');
-    callback && callback();
+  static async signOut(successCallback?: () => void, errorCallback?: () => void) {
+    try {
+      await api.post('/logout', { [AuthorizationHeader.RefreshToken]: window.localStorage.getItem(AuthorizationHeader.RefreshToken) || Authenticator.tokens?.refreshToken });
+      Authenticator.user = null;
+      Authenticator.tokens = null;
+      window.localStorage.removeItem(AuthorizationHeader.AccessToken);
+      window.localStorage.removeItem(AuthorizationHeader.RefreshToken);
+      window.localStorage.removeItem('user');
+    } catch (e) {
+      errorCallback && errorCallback();
+    }
   }
 
   static Navigate = ({ children }: React.PropsWithChildren) => {

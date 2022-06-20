@@ -21,7 +21,7 @@ export const HomeScreen = (): JSX.Element => {
   const { t } = useTranslate();
   const navigate = useNavigate();
   const signOut = () => {
-    Authenticator.signOut({ callback: () => navigate('/') });
+    Authenticator.signOut(() => navigate('/'));
   };
   const inputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();

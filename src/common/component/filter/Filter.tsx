@@ -46,6 +46,7 @@ export const Filter = (props: FilterProps): JSX.Element => {
     if (init) {
       props.onClick && props.onClick(selected);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   useEffect(() => {
