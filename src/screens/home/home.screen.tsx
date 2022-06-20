@@ -10,11 +10,11 @@ import { useTranslate } from 'src/common/component/translate/translate.component
 import { Authenticator } from 'src/common/component/user/authenticator.component';
 import { filter_game_by_search_string, reset_game } from 'src/common/store/reducers/GameReducer';
 import { Providers } from 'src/common/molecules/providers/providers.component';
-import './home.screen.scss';
 import { Groups } from 'src/common/molecules/groups/groups.component';
 import { Sorter } from 'src/common/molecules/sorter/sorter.componet';
 import { RootState } from 'src/common/store/store';
 import { Columns } from 'src/common/molecules/columns/columns.component';
+import './home.screen.scss';
 
 export const HomeScreen = (): JSX.Element => {
   let timeout: number;
@@ -67,7 +67,7 @@ export const HomeScreen = (): JSX.Element => {
             <Sorter data={store.games.filtered} />
             <Columns />
             <Button className="btn-secondary" onClick={reset} style={{ marginTop: '32px' }}>
-              Reset
+              {t('Reset')}
             </Button>
           </section>
         </div>
