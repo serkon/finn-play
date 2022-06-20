@@ -20,9 +20,7 @@ export const HomeScreen = (): JSX.Element => {
   let timeout: number;
   const { t } = useTranslate();
   const navigate = useNavigate();
-  const signOut = () => {
-    Authenticator.signOut(() => navigate('/'));
-  };
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const store = useSelector<RootState>((state: RootState): RootState => state) as RootState;
@@ -34,6 +32,9 @@ export const HomeScreen = (): JSX.Element => {
         dispatch(filter_game_by_search_string(inputRef.current?.value ? inputRef.current?.value : ''));
       }
     }, 400);
+  };
+  const signOut = () => {
+    Authenticator.signOut(() => navigate('/'));
   };
   const reset = () => {
     dispatch(reset_game());
@@ -62,13 +63,23 @@ export const HomeScreen = (): JSX.Element => {
           </section>
           <section className="col-xs-12 col-md-4 filter-section">
             <Input label={t('Search')} iconRight="search" onInput={() => change()} ref={inputRef} />
-            <Providers />
-            <Groups />
-            <Sorter data={store.games.filtered} />
-            <Columns />
-            <Button className="btn-secondary" onClick={reset} style={{ marginTop: '32px' }}>
-              {t('Reset')}
-            </Button>
+            <div className={`menu ${isMenuOpen ? 'open' : 'close'}`}>
+              <Providers />
+              <Groups />
+              {store.games && <Sorter data={store.games.filtered} />}
+              <Columns />
+              <div className="reset-area">
+                <span>Games amount: 3800</span>
+                <Button className="btn-secondary" onClick={reset}>
+                  {t('Reset')}
+                </Button>
+              </div>
+            </div>
+            <div className="show-filters">
+              <Button className="btn-primary ghost" iconLeft="menu" onClick={() => setMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? t('Hide filters') : t('Show filters')}
+              </Button>
+            </div>
           </section>
         </div>
       </div>

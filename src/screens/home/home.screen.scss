@@ -28,6 +28,7 @@
   }
 
   .filter-section {
+    margin-bottom: auto;
     padding: 32px;
     border: 1px solid var(--color-black-50);
     border-radius: 8px;
@@ -42,6 +43,53 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 120%;
+    }
+
+    .reset-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    .show-filters {
+      display: none;
+    }
+  }
+}
+
+.mobile {
+  .header {
+    box-shadow: none;
+  }
+
+  .main-section {
+    margin-top: 24px;
+
+    .row {
+      flex-direction: column-reverse;
+
+      .filter-section {
+        margin: 0 20px 32px;
+
+        .menu {
+          display: block;
+
+          &.close {
+            display: none;
+          }
+        }
+
+        .show-filters {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 }

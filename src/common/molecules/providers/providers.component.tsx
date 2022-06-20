@@ -35,7 +35,7 @@ export const Providers = () => {
     <>
       <section className="provider-list">
         <h2 className="provider-title">{t('Providers')}</h2>
-        <Filter path="name" placeholder={'Search Providers'} data={store.providers.list} onClick={(providers: Provider[]) => filterByTags(providers)} reset={store.games.reset} />
+        <Filter path="name" placeholder={'Search Providers'} data={store.providers?.list} onClick={(providers: Provider[]) => filterByTags(providers)} reset={store.games?.reset} />
       </section>
     </>
   );
