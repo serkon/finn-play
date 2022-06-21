@@ -23,6 +23,8 @@ export const api = axios.create({
   },
 });
 
+api.defaults.withCredentials = true;
+
 api.interceptors.request.use(
   (request: AxiosRequestConfig<any>) => {
     const token = window.localStorage.getItem(AuthorizationHeader.AccessToken);
@@ -74,7 +76,7 @@ api.interceptors.response.use(
 );
 
 const signOut = () => {
-  window.location.href = '/login';
+  // window.location.href = '/login';
   Authenticator.signOut();
   api.defaults.headers.common['RefreshToken'] = false;
 };

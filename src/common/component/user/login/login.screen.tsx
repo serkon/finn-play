@@ -44,8 +44,8 @@ export const LoginScreen = () => {
       <p className="direction">You must log in to view the page at {from}</p>
       {state?.error && <p className="error">{state?.error}</p>}
       <form onSubmit={handleSubmit} className="login-form">
-        <Input label={t('Username')} defaultValue={'john@doe.com'} width="100%" name="username" />
-        <Input label={t('Password')} defaultValue={'1234567'} type="password" name="password" icon="eyes" />
+        <Input label={t('Username')} defaultValue={'player1'} width="100%" name="username" />
+        <Input label={t('Password')} defaultValue={'player1'} type="password" name="password" iconRight="eyes" />
         <Button type="submit" className="btn-primary login-button" disabled={loading}>
           {!loading ? t('Login') : <img src="/images/common/loading.svg" className="loading-icon" />}
         </Button>

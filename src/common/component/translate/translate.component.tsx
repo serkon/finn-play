@@ -7,7 +7,7 @@ export const LanguageContext = React.createContext<{ tState: State; tChange: (la
 });
 
 interface Props {
-  default: string;
+  default?: string;
   children?: React.ReactNode;
 }
 

@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "GitHub Light Colorblind (Beta)",
+  "workbench.colorTheme": "GitHub Plus",
   "workbench.iconTheme": "helium-icon-theme",
   "git.autofetch": true,
   "security.workspace.trust.untrustedFiles": "newWindow",
@@ -74,7 +74,7 @@
     }
   },
   "[scss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": true
     }

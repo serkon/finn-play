@@ -1,7 +1,9 @@
 @import "themes/light.scss";
-@import "themes/input.component.scss";
-@import "themes/button.component.scss";
+@import "themes/elements/input.component.scss";
+@import "themes/elements/button.component.scss";
+@import "themes/elements/types.scss";
 @import "themes/icon.scss";
+@import "themes/grid.scss";
 
 html,
 body,
