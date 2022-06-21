@@ -76,7 +76,7 @@ api.interceptors.response.use(
 );
 
 const signOut = () => {
-  window.location.href = '/login';
+  // window.location.href = '/login';
   Authenticator.signOut();
   api.defaults.headers.common['RefreshToken'] = false;
 };
