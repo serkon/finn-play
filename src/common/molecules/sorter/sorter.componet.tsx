@@ -15,7 +15,6 @@ export const Sorter = (props: SorterProps) => {
   const { t } = useTranslate();
   const dispatch = useDispatch();
   const onSorting = (sorting: Game[]) => {
-    console.log('ss:', sorting);
     dispatch(update_filtered_data(sorting));
   };
   const sortingCases: SortingItem[] = [

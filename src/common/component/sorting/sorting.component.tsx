@@ -1,4 +1,4 @@
-import React, { ForwardedRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { ForwardedRef, useImperativeHandle, useRef, useState } from 'react';
 
 import './sorting.scss';
 
@@ -52,10 +52,6 @@ export const Sorting = React.forwardRef<ImperativeHandle, SortingProps>((props, 
     }
     return sorted;
   };
-
-  useEffect(() => {
-    console.log('sort efffecct');
-  }, [props.data]);
 
   // The component instance will be extended
   // with whatever you return from the callback passed
