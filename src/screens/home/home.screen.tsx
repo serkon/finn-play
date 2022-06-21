@@ -34,7 +34,12 @@ export const HomeScreen = (): JSX.Element => {
     }, 400);
   };
   const signOut = () => {
-    Authenticator.signOut(() => navigate('/'));
+    console.log('logged out');
+
+    Authenticator.signOut(() => {
+      console.log('logged out');
+      navigate('/');
+    });
   };
   const reset = () => {
     dispatch(reset_game());

@@ -23,6 +23,8 @@ export const api = axios.create({
   },
 });
 
+api.defaults.withCredentials = true;
+
 api.interceptors.request.use(
   (request: AxiosRequestConfig<any>) => {
     const token = window.localStorage.getItem(AuthorizationHeader.AccessToken);

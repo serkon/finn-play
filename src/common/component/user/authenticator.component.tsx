@@ -49,6 +49,7 @@ export class Authenticator {
       window.localStorage.removeItem(AuthorizationHeader.AccessToken);
       window.localStorage.removeItem(AuthorizationHeader.RefreshToken);
       window.localStorage.removeItem('user');
+      successCallback && successCallback();
     } catch (e) {
       errorCallback && errorCallback();
     }
