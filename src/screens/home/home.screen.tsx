@@ -42,6 +42,7 @@ export const HomeScreen = (): JSX.Element => {
   };
   const reset = () => {
     dispatch(reset_game());
+    console.log('d', store.games.filter);
     (inputRef.current as HTMLInputElement).value = '';
   };
 
@@ -63,7 +64,7 @@ export const HomeScreen = (): JSX.Element => {
       <div className="container main-section">
         <div className="row">
           <section className="col-xs-12 col-md-8 content">
-            <Games />
+            <Games inputRef={inputRef} />
           </section>
           <section className="col-xs-12 col-md-4 filter-section">
             <Input label={t('Search')} iconRight="search" onInput={() => change()} ref={inputRef} />
