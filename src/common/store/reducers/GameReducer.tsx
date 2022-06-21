@@ -85,7 +85,6 @@ export const GameReducer: Reducer = (state: GameState = data, action: AnyAction)
       return { ...state, filtered: action.payload };
     }
     case GAME_ACTION.RESET: {
-      console.log({ ...init.filter });
       return {
         ...state,
         filtered: state.game,

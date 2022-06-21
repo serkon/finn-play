@@ -14,7 +14,6 @@ export const Games = ({ inputRef }: { inputRef: React.RefObject<HTMLInputElement
   const [columns, setColumns] = useState<number>(store.games?.columns);
   const reset = () => {
     dispatch(reset_game());
-    console.log(inputRef);
     (inputRef.current as HTMLInputElement).value = '';
   };
 
