@@ -37,7 +37,6 @@ export const HomeScreen = (): JSX.Element => {
     console.log('logged out');
 
     Authenticator.signOut(() => {
-      console.log('logged out');
       navigate('/');
     });
   };

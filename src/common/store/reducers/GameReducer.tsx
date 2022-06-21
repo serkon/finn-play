@@ -54,8 +54,8 @@ const filterAll = (state: GameState): Game[] => {
 
   return filtered;
 };
-
-export const GameReducer: Reducer = (state: GameState = init, action: AnyAction) => {
+const data = JSON.parse(JSON.stringify(init));
+export const GameReducer: Reducer = (state: GameState = data, action: AnyAction) => {
   switch (action.type) {
     case GAME_ACTION.SET_GAMES: {
       return { ...state, game: action.payload, filtered: action.payload };
@@ -85,7 +85,14 @@ export const GameReducer: Reducer = (state: GameState = init, action: AnyAction)
       return { ...state, filtered: action.payload };
     }
     case GAME_ACTION.RESET: {
-      return { ...state, filtered: state.game, filter: init.filter, columns: init.columns, reset: state.reset + 1 };
+      console.log('### init: ', { ...init });
+      return {
+        ...state,
+        filtered: state.game,
+        filter: { ...init.filter },
+        columns: init.columns,
+        reset: state.reset + 1,
+      };
     }
     default:
       return state;
